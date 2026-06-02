@@ -1,0 +1,23 @@
+﻿body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #fdfbf7;
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f7f3eb;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a37f61;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8c5e3c;
+}

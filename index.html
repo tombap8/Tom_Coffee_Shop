@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Brown Elegance</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans KR, Playfair Display (고풍스러운 헤더용) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdfbf7',
+                            100: '#f7f3eb',
+                            200: '#e6dac8',
+                            500: '#a37f61',
+                            700: '#8c5e3c',
+                            800: '#5c3d21',
+                            900: '#3d2511',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body class="text-brand-900 flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-brand-50/95 backdrop-blur-md border-b border-brand-200 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" onclick="switchTab('main')" class="flex items-center space-x-2 group">
+                <div class="p-2 bg-brand-800 text-brand-50 rounded-lg group-hover:bg-brand-700 transition-colors">
+                    <i data-lucide="coffee" class="w-6 h-6"></i>
+                </div>
+                <span class="font-serif text-xl md:text-2xl font-bold tracking-wider text-brand-800">BROWN ELEGANCE</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium">
+                <button onclick="switchTab('main')" class="nav-link text-brand-800 hover:text-brand-500 transition-colors active-nav" id="nav-main">홈</button>
+                <button onclick="switchTab('menu')" class="nav-link text-brand-800 hover:text-brand-500 transition-colors" id="nav-menu">메뉴판</button>
+                <button onclick="switchTab('ingredients')" class="nav-link text-brand-800 hover:text-brand-500 transition-colors" id="nav-ingredients">원재료 이야기</button>
+            </nav>
+
+            <!-- Cart Trigger & Mobile Menu Icon -->
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleCart()" class="relative p-2 text-brand-800 hover:text-brand-500 transition-colors">
+                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-brand-800">
+                    <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-100 border-t border-brand-200 transition-all px-4 py-4 space-y-3">
+            <button onclick="switchTab('main'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-brand-800 hover:text-brand-500">홈</button>
+            <button onclick="switchTab('menu'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-brand-800 hover:text-brand-500">메뉴판</button>
+            <button onclick="switchTab('ingredients'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-brand-800 hover:text-brand-500">원재료 이야기</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow">
+
+        <!-- ================= PAGE 1: MAIN (HOME) ================= -->
+        <section id="page-main" class="tab-content">
+            <!-- Hero Section -->
+            <div class="relative bg-brand-100 py-16 md:py-28 overflow-hidden border-b border-brand-200">
+                <!-- Decorative background elements -->
+                <div class="absolute inset-0 opacity-10 pointer-events-none">
+                    <svg class="absolute -right-10 -top-10 w-96 h-96 text-brand-500" fill="currentColor" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" />
+                    </svg>
+                </div>
+                
+                <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
+                    <div class="space-y-6">
+                        <span class="inline-block bg-brand-200 text-brand-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Premium Specialty Cafe</span>
+                        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-brand-800">
+                            시간을 내어 음미하는<br>
+                            <span class="text-brand-500 italic">깊은 커피의 품격</span>
+                        </h1>
+                        <p class="text-brand-700 leading-relaxed max-w-md">
+                            엄선된 아라비카 원두와 유기농 찻잎, 신선한 생과일 스무디까지. <br>
+                            따뜻한 우드 감성의 인테리어 속에서 완벽하게 추출된 최고의 한 잔을 경험하세요.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button onclick="switchTab('menu')" class="px-6 py-3 bg-brand-800 hover:bg-brand-700 text-brand-50 font-bold rounded-lg shadow-md transition-all flex items-center space-x-2">
+                                <span>메뉴 주문하기</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </button>
+                            <button onclick="switchTab('ingredients')" class="px-6 py-3 bg-white border border-brand-200 hover:bg-brand-100 text-brand-800 font-semibold rounded-lg transition-all">
+                                원재료 스토리 보기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Beautiful interactive menu showcase card -->
+                    <div class="flex justify-center">
+                        <div class="bg-brand-50 border-4 border-double border-brand-800 p-8 rounded-xl shadow-2xl max-w-sm w-full relative">
+                            <!-- Vintage corner decorations -->
+                            <div class="absolute top-2 left-2 text-brand-800 font-serif opacity-75">✦</div>
+                            <div class="absolute top-2 right-2 text-brand-800 font-serif opacity-75">✦</div>
+                            <div class="absolute bottom-2 left-2 text-brand-800 font-serif opacity-75">✦</div>
+                            <div class="absolute bottom-2 right-2 text-brand-800 font-serif opacity-75">✦</div>
+
+                            <div class="text-center border-b-2 border-brand-800 pb-4 mb-6">
+                                <h3 class="font-serif text-3xl font-black text-brand-800 tracking-widest">TODAY'S SIGNATURE</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-lg text-brand-800">바닐라라떼</span>
+                                    <span class="border-b border-dotted border-brand-500 flex-grow mx-2"></span>
+                                    <span class="font-serif font-semibold text-brand-800">5,000원</span>
+                                </div>
+                                <p class="text-xs text-gray-500 -mt-2">천연 바닐라 빈 마다가스카르산 시럽과 깊고 풍부한 에스프레소의 만남</p>
+
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-lg text-brand-800">녹차라떼</span>
+                                    <span class="border-b border-dotted border-brand-500 flex-grow mx-2"></span>
+                                    <span class="font-serif font-semibold text-brand-800">4,000원</span>
+                                </div>
+                                <p class="text-xs text-gray-500 -mt-2">제주 청정 다원에서 기른 찻잎을 곱게 갈아 만든 진한 말차 맛</p>
+
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-lg text-brand-800">딸기요거트스무디</span>
+                                    <span class="border-b border-dotted border-brand-500 flex-grow mx-2"></span>
+                                    <span class="font-serif font-semibold text-brand-800">5,500원</span>
+                                </div>
+                                <p class="text-xs text-gray-500 -mt-2">국산 딸기 과육과 유산균이 살아있는 상큼한 프리미엄 요거트</p>
+                            </div>
+                            <button onclick="switchTab('menu')" class="w-full mt-6 py-2.5 bg-brand-800 text-brand-50 hover:bg-brand-900 transition-colors font-bold rounded text-sm tracking-wider">전체 메뉴 감상하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features / Core Strengths -->
+            <div class="py-16 max-w-6xl mx-auto px-4">
+                <div class="text-center max-w-lg mx-auto mb-12 space-y-2">
+                    <h2 class="text-3xl font-serif font-bold text-brand-800">우리가 고집하는 가치</h2>
+                    <p class="text-brand-700 text-sm">브라운 엘리먼트는 단순히 음료를 파는 것이 아닌, 휴식과 만족을 설계합니다.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl border border-brand-200 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center text-brand-800">
+                            <i data-lucide="gem" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-800">스페셜티 원두 100%</h3>
+                        <p class="text-brand-700 text-sm leading-relaxed">
+                            매해 수확하는 프리미엄 뉴크롭 생두를 전문 로스터의 손길을 거쳐 가장 신선한 상태로 브루잉합니다. 깊은 초콜릿 바디감과 깔끔한 여운을 약속합니다.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-brand-200 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center text-brand-800">
+                            <i data-lucide="leaf" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-800">엄선된 로컬 및 오가닉 티</h3>
+                        <p class="text-brand-700 text-sm leading-relaxed">
+                            허브티와 밀크티에 사용되는 모든 찻잎은 무농약 농장과의 직접 거래를 통해 공수하여 한 잔 한 잔 깊고 정직한 본연의 풍미를 냅니다.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-brand-200 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center text-brand-800">
+                            <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-800">무첨가 요거트 & 신선한 과일</h3>
+                        <p class="text-brand-700 text-sm leading-relaxed">
+                            불필요한 식품 합성 첨가물과 시럽 사용을 최소화하고 진짜 과육과 1A 등급 원유만을 사용하여 건강한 디저트 음료를 완성합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: MENU BOARD (INTERACTIVE MENU) ================= -->
+        <section id="page-menu" class="tab-content hidden py-10 max-w-6xl mx-auto px-4">
+            
+            <!-- Category Filtering & Search Panel -->
+            <div class="mb-10 space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                        <h2 class="text-3xl font-serif font-bold text-brand-800">OUR MENU</h2>
+                        <p class="text-brand-700 text-sm">원하시는 카테고리별로 정성스럽게 로스팅하고 우려낸 메뉴들을 살펴보세요.</p>
+                    </div>
+                    <!-- Search Input -->
+                    <div class="relative max-w-xs w-full">
+                        <input type="text" id="menu-search" oninput="filterMenuItems()" placeholder="메뉴 이름 검색..." class="w-full px-4 py-2 pl-10 border border-brand-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-brand-700 text-sm">
+                        <i data-lucide="search" class="w-4 h-4 text-brand-500 absolute left-3 top-3"></i>
+                    </div>
+                </div>
+
+                <!-- Category Tabs -->
+                <div class="flex flex-wrap gap-2 border-b border-brand-200 pb-2">
+                    <button onclick="setCategoryFilter('ALL')" class="category-btn px-4 py-2 rounded-full font-medium text-sm transition-all bg-brand-800 text-brand-50" data-category="ALL">전체보기</button>
+                    <button onclick="setCategoryFilter('COFFEE')" class="category-btn px-4 py-2 rounded-full font-medium text-sm transition-all bg-brand-100 text-brand-800 hover:bg-brand-200" data-category="COFFEE">COFFEE</button>
+                    <button onclick="setCategoryFilter('LATTE')" class="category-btn px-4 py-2 rounded-full font-medium text-sm transition-all bg-brand-100 text-brand-800 hover:bg-brand-200" data-category="LATTE">LATTE</button>
+                    <button onclick="setCategoryFilter('TEA')" class="category-btn px-4 py-2 rounded-full font-medium text-sm transition-all bg-brand-100 text-brand-800 hover:bg-brand-200" data-category="TEA">TEA</button>
+                    <button onclick="setCategoryFilter('SMOOTHIE')" class="category-btn px-4 py-2 rounded-full font-medium text-sm transition-all bg-brand-100 text-brand-800 hover:bg-brand-200" data-category="SMOOTHIE">SMOOTHIE</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Menu Grid -->
+            <div id="menu-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Javascript will inject cards here dynamically -->
+            </div>
+            
+            <div id="no-results" class="hidden text-center py-16">
+                <i data-lucide="info" class="w-12 h-12 text-brand-500 mx-auto mb-3"></i>
+                <p class="text-brand-800 font-semibold">검색하신 메뉴를 찾을 수 없습니다.</p>
+                <p class="text-sm text-gray-500 mt-1">철자를 확인하시거나 다른 카테고리를 선택해 주세요.</p>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: INGREDIENTS STORY ================= -->
+        <section id="page-ingredients" class="tab-content hidden py-10 max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-brand-700 font-serif tracking-widest text-xs uppercase font-bold">What is in our cup</span>
+                <h2 class="text-4xl font-serif font-bold text-brand-800">우리가 선택한 정직한 재료들</h2>
+                <p class="text-brand-700 leading-relaxed text-sm">
+                    바쁜 일상 속 가치를 더하는 고귀한 한 모금의 탄생은 최고의 원재료에서 시작됩니다. <br>
+                    브라운 엘리먼트가 고수하는 5가지 시그니처 재료 스토리를 공개합니다.
+                </p>
+            </div>
+
+            <div class="space-y-16">
+                <!-- Ingredient item 1 -->
+                <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 md:p-10 rounded-2xl border border-brand-200 shadow-sm">
+                    <div class="space-y-4">
+                        <span class="text-xs font-bold tracking-widest text-brand-500 uppercase">COFFEE KEY RESOURCE</span>
+                        <h3 class="text-2xl font-bold text-brand-800 font-serif">싱글 오리진 에티오피아 & 콜롬비아 블렌드</h3>
+                        <p class="text-brand-700 text-sm leading-relaxed">
+                            우리가 제공하는 모든 커피 메뉴의 근간이 되는 원두입니다. 화사한 시트러스 향과 자스민을 닮은 에티오피아 예가체프의 세련미, 그리고 묵직한 바디감과 다크초콜릿 단맛이 가미된 콜롬비아 수프레모를 황금비율로 블렌딩했습니다.
+                        </p>
+                        <ul class="space-y-1 text-xs text-brand-800 font-semibold">
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-brand-500 mr-2"></i> SCA 스페셜티 인증 최고급 등급 원두</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-brand-500 mr-2"></i> 로스팅 후 7일 이내 원두만 상시 추출</li>
+                        </ul>
+                    </div>
+                    <div class="bg-brand-100 rounded-xl h-64 flex flex-col items-center justify-center border-2 border-dashed border-brand-200 relative overflow-hidden">
+                        <div class="text-6xl mb-3">☕</div>
+                        <span class="font-serif font-bold text-brand-800 text-lg">Specialty Roasted Bean</span>
+                        <span class="text-xs text-brand-500 mt-1">원산지: 에티오피아 50%, 콜롬비아 50%</span>
+                        <div class="absolute -bottom-6 -right-6 text-brand-200 opacity-20"><i data-lucide="coffee" class="w-32 h-32"></i></div>
+                    </div>
+                </div>
+
+                <!-- Ingredient item 2 -->
+                <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 md:p-10 rounded-2xl border border-brand-200 shadow-sm md:flex-row-reverse">
+                    <div class="md:order-2 space-y-4">
+                        <span class="text-xs font-bold tracking-widest text-brand-500 uppercase">LATTE KEY RESOURCE</span>
+                        <h3 class="text-2xl font-bold text-brand-800 font-serif">제주산 유기농 말차 & 천연 고구마 원물</h3>
+                        <p class="text-brand-700 text-sm leading-relaxed">
+                            라떼 파우더의 화합물을 멀리하고 진짜 우수한 건강 원물을 사용합니다. 말차라떼에는 일체의 설탕 첨가가 최소화된 100% 제주 어린 유기농 찻잎 가루를 사용하고, 고구마라떼는 엄선된 해남 꿀고구마를 구워 곱게 으깨어 고소하고 부드럽습니다.
+                        </p>
+                        <ul class="space-y-1 text-xs text-brand-800 font-semibold">
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-brand-500 mr-2"></i> 국산 청정 지역 원물 공수</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-brand-500 mr-2"></i> 인공 향료 및 타르색소 0% 실현</li>
+                        </ul>
+                    </div>
+                    <div class="md:order-1 bg-brand-100 rounded-xl h-64 flex flex-col items-center justify-center border-2 border-dashed border-brand-200 relative overflow-hidden">
+                        <div class="text-6xl mb-3">🍃</div>
+                        <span class="font-serif font-bold text-brand-800 text-lg">Natural Raw Ingredient</span>
+                        <span class="text-xs text-brand-500 mt-1">유기농 제주 말차 & 가공하지 않은 생물</span>
+                        <div class="absolute -bottom-6 -left-6 text-brand-200 opacity-20"><i data-lucide="leaf" class="w-32 h-32"></i></div>
+                    </div>
+                </div>
+
+                <!-- Ingredient item 3 -->
+                <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 md:p-10 rounded-2xl border border-brand-200 shadow-sm">
+                    <div class="space-y-4">
+                        <span class="text-xs font-bold tracking-widest text-brand-500 uppercase">TEA KEY RESOURCE</span>
+                        <h3 class="text-2xl font-bold text-brand-800 font-serif">프리미엄 홀리프(Whole Leaf) 허브와 과실</h3>
+                        <p class="text-brand-700 text-sm leading-relaxed">
+                            티백 안의 부스러기 먼지 티가 아닌 진짜 찻잎 통잎(Whole-leaf)만을 주재료로 담아 우려냅니다. 히비스커스와 페퍼민트 고유의 천연 오일 성분이 보존되어 시간이 지나 식어도 떫은맛이 없으며 과일 블렌디드 티의 깊고 풍요로운 수색과 산뜻함을 완성합니다.
+                        </p>
+                        <ul class="space-y-1 text-xs text-brand-800 font-semibold">
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-brand-500 mr-2"></i> 최고급 삼각 피라미드 친환경 분해성 티백 사용</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-brand-500 mr-2"></i> 풍부한 폴리페놀 함유와 카페인 우려 최소화</li>
+                        </ul>
+                    </div>
+                    <div class="bg-brand-100 rounded-xl h-64 flex flex-col items-center justify-center border-2 border-dashed border-brand-200 relative overflow-hidden">
+                        <div class="text-6xl mb-3">🍵</div>
+                        <span class="font-serif font-bold text-brand-800 text-lg">Whole Leaf Tea</span>
+                        <span class="text-xs text-brand-500 mt-1">허벌 및 홍차 통잎 그대로 추출</span>
+                        <div class="absolute -bottom-6 -right-6 text-brand-200 opacity-20"><i data-lucide="droplet" class="w-32 h-32"></i></div>
+                    </div>
+                </div>
+
+                <!-- Ingredient item 4 -->
+                <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 md:p-10 rounded-2xl border border-brand-200 shadow-sm md:flex-row-reverse">
+                    <div class="md:order-2 space-y-4">
+                        <span class="text-xs font-bold tracking-widest text-brand-500 uppercase">SMOOTHIE KEY RESOURCE</span>
+                        <h3 class="text-2xl font-bold text-brand-800 font-serif">생과일 급속 냉동 과육 & 그리스 전통 요거트</h3>
+                        <p class="text-brand-700 text-sm leading-relaxed">
+                            우리의 스무디가 유독 걸쭉하고 맛이 깊은 이유는 과일 향을 내는 시럽 대신 직접 세척하고 꼭지를 딴 딸기와 급속 동결된 고품질 망고 과육만을 듬뿍 집어넣기 때문입니다. 요거트 음료에는 진한 점도의 그릭 스타일 프리미엄 요거트 베이스를 배합합니다.
+                        </p>
+                        <ul class="space-y-1 text-xs text-brand-800 font-semibold">
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-brand-500 mr-2"></i> 과실 고유의 천연 비타민C, 섬유질 보존</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-brand-500 mr-2"></i> 진하고 인공적이지 않은 과일 본연의 향미</li>
+                        </ul>
+                    </div>
+                    <div class="md:order-1 bg-brand-100 rounded-xl h-64 flex flex-col items-center justify-center border-2 border-dashed border-brand-200 relative overflow-hidden">
+                        <div class="text-6xl mb-3">🍓</div>
+                        <span class="font-serif font-bold text-brand-800 text-lg">Real Fruit & Yogurt</span>
+                        <span class="text-xs text-brand-500 mt-1">인공 시럽 무첨가 원칙 준수</span>
+                        <div class="absolute -bottom-6 -left-6 text-brand-200 opacity-20"><i data-lucide="sparkles" class="w-32 h-32"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-800 text-brand-100 border-t border-brand-900 py-12">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="p-1.5 bg-brand-50 text-brand-800 rounded">
+                        <i data-lucide="coffee" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-serif text-lg font-bold tracking-wider text-brand-50">BROWN ELEGANCE</span>
+                </div>
+                <p class="text-xs text-brand-200 leading-relaxed">
+                    브라운 엘리먼트는 세련된 맛과 아날로그 감성을 결합한 따뜻한 안식처를 목표로 삼습니다. 고품질 원료만을 약속드립니다.
+                </p>
+            </div>
+            
+            <div class="space-y-2 text-xs">
+                <h4 class="font-bold text-brand-50 text-sm mb-3">STORE INFO</h4>
+                <p class="text-brand-200 flex items-center"><i data-lucide="map-pin" class="w-3.5 h-3.5 mr-2 text-brand-500"></i> 서울특별시 마포구 아날로그동 브라운길 88</p>
+                <p class="text-brand-200 flex items-center"><i data-lucide="phone" class="w-3.5 h-3.5 mr-2 text-brand-500"></i> 02-123-4567</p>
+                <p class="text-brand-200 flex items-center"><i data-lucide="clock" class="w-3.5 h-3.5 mr-2 text-brand-500"></i> 매일 09:00 - 22:00 (명절 당일 휴무)</p>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="font-bold text-brand-50 text-sm">NEWSLETTER</h4>
+                <p class="text-xs text-brand-200">새로운 시즌 원두 출시 및 프로모션 소식을 가장 빠르게 만나보세요.</p>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="이메일 주소 입력" class="px-3 py-2 text-xs rounded bg-brand-900 border border-brand-700 text-brand-50 focus:outline-none focus:ring-1 focus:ring-brand-500 flex-grow">
+                    <button onclick="showToast('구독 신청이 완료되었습니다.')" class="px-3 py-2 text-xs font-bold rounded bg-brand-500 text-brand-50 hover:bg-brand-700 transition-colors">구독</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 mt-8 pt-8 border-t border-brand-700/50 text-center text-[10px] text-brand-200">
+            &copy; 2026 Cafe Brown Elegance. All rights reserved. Designed for Tom with love.
+        </div>
+    </footer>
+
+    <!-- ================= SLIDE CART PANEL ================= -->
+    <div id="cart-panel" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-brand-50 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-l border-brand-200 flex flex-col">
+        <div class="p-4 border-b border-brand-200 flex justify-between items-center bg-brand-100">
+            <h3 class="font-bold text-brand-800 text-lg flex items-center"><i data-lucide="shopping-bag" class="w-5 h-5 mr-2"></i> 장바구니</h3>
+            <button onclick="toggleCart()" class="p-1 hover:bg-brand-200 rounded-full text-brand-800">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Cart List Container -->
+        <div id="cart-items-container" class="flex-grow overflow-y-auto p-4 space-y-4">
+            <!-- Dynamically injected items -->
+            <div id="empty-cart-message" class="text-center py-16 text-gray-400">
+                <i data-lucide="shopping-cart" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+                <p class="text-sm">장바구니가 비어 있습니다.</p>
+                <p class="text-xs mt-1">마음에 드는 음료를 추가해 보세요!</p>
+            </div>
+        </div>
+
+        <!-- Cart Total & Action -->
+        <div class="p-4 border-t border-brand-200 bg-brand-100 space-y-4">
+            <div class="flex justify-between items-center text-sm font-semibold text-brand-800">
+                <span>총 주문 수량:</span>
+                <span id="cart-total-qty">0개</span>
+            </div>
+            <div class="flex justify-between items-center text-lg font-bold text-brand-800">
+                <span>최종 결제 금액:</span>
+                <span id="cart-total-price">0원</span>
+            </div>
+            <button onclick="checkoutOrder()" class="w-full py-3 bg-brand-800 text-brand-50 hover:bg-brand-900 transition-colors rounded-lg font-bold shadow-md">
+                주문하기 (가상 시뮬레이션)
+            </button>
+        </div>
+    </div>
+
+    <!-- BACKDROP FOR CART & MODALS -->
+    <div id="backdrop" onclick="closeAllOverlays()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden transition-opacity duration-300"></div>
+
+    <!-- ================= ITEM DETAIL MODAL ================= -->
+    <div id="detail-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg bg-brand-50 rounded-2xl shadow-2xl border-4 border-double border-brand-800 z-50 p-6 hidden">
+        <button onclick="closeDetailModal()" class="absolute top-4 right-4 p-1 hover:bg-brand-100 rounded-full text-brand-800">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Dynamic Modal Content -->
+        <div id="modal-content" class="space-y-6">
+            <!-- Header -->
+            <div class="text-center border-b border-brand-200 pb-4">
+                <span id="modal-category" class="text-[10px] font-bold tracking-widest text-brand-500 uppercase">CATEGORY</span>
+                <h3 id="modal-title" class="font-serif text-2xl font-bold text-brand-800 mt-1">음료명</h3>
+                <p id="modal-price" class="text-lg font-bold text-brand-700 mt-1">0원</p>
+            </div>
+
+            <!-- Detail Grid -->
+            <div class="grid grid-cols-2 gap-4 text-xs">
+                <div class="bg-brand-100 p-3 rounded-lg border border-brand-200/50">
+                    <span class="text-gray-500 block">원재료 특징</span>
+                    <strong id="modal-ingredient" class="text-brand-800 mt-1 block">주요 성분</strong>
+                </div>
+                <div class="bg-brand-100 p-3 rounded-lg border border-brand-200/50">
+                    <span class="text-gray-500 block">카페인 포함 여부</span>
+                    <strong id="modal-caffeine" class="text-brand-800 mt-1 block">낮음 / 없음</strong>
+                </div>
+                <div class="bg-brand-100 p-3 rounded-lg border border-brand-200/50 col-span-2">
+                    <span class="text-gray-500 block">스토리 & 페어링 추천</span>
+                    <p id="modal-story" class="text-brand-800 mt-1 leading-relaxed">이 메뉴의 설명 및 깊은 향에 대한 스토리텔링이 들어가는 곳입니다.</p>
+                </div>
+            </div>
+
+            <!-- Footer Action -->
+            <div class="flex gap-3">
+                <button onclick="closeDetailModal()" class="w-1/3 py-3 border border-brand-200 hover:bg-brand-100 rounded-lg text-brand-800 font-semibold text-sm transition-colors">
+                    닫기
+                </button>
+                <button id="modal-add-cart-btn" class="w-2/3 py-3 bg-brand-800 text-brand-50 hover:bg-brand-900 rounded-lg font-bold text-sm transition-colors flex items-center justify-center space-x-2">
+                    <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                    <span>장바구니 담기</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-brand-800 text-brand-50 font-medium text-sm rounded-full shadow-2xl z-50 flex items-center space-x-2 border border-brand-700 pointer-events-none opacity-0 transition-opacity duration-300">
+        <i data-lucide="check-circle" class="w-4 h-4 text-brand-200"></i>
+        <span id="toast-message">메시지 내용</span>
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
